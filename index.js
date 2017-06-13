@@ -2,9 +2,14 @@
 
 var outputData = "";
 
-var fs = require('fs-extra')
+var fs = require('fs-extra');
 
-function createFile(cacheDefinitions, targetFile){
+function createFile(targetFile, cacheDefinitionFile){
+
+  //TODO error handling
+  var cacheDefinitions = JSON.parse(fs.readFileSync(cacheDefinitionFile, 'utf8'));
+
+
   validateCacheDefinitions();
 
   addFileToOutputData('src/lib/functions/deleteUnusedCaches.js');
